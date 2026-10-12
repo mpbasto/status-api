@@ -1,0 +1,31 @@
+[project]
+name = "status-api"
+version = "0.1.0"
+requires-python = ">=3.13"
+dependencies = [
+    "fastapi[standard]>=0.143.0",
+    "pytest>=9.1.1",
+]
+
+[tool.fastapi]
+entrypoint = "app.main:app"
+
+[dependency-groups]
+dev = [
+    "poethepoet>=0.48.0",
+]
+
+[tool.poe.tasks.test]
+cmd = "python -m pytest -v"
+
+[tool.poe.tasks.dev_env]
+cmd = "fastapi dev"
+envfile = "config/dev.env"
+
+[tool.poe.tasks.staging_env]
+cmd = "fastapi dev"
+envfile = "config/staging.env"
+
+[tool.poe.tasks.test_env]
+cmd = "fastapi dev"
+envfile = "config/test.env"
